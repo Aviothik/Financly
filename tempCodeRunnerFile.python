@@ -1,0 +1,40 @@
+import pandas as pd
+
+# Creating the dataset manually
+data = {
+    "Order ID": list(range(1, 16)),
+    "Customer Name": [
+        "Cassie Winters", "Edward Brown", "Sonia Freeman", "Shawn Whitehead", "Kyle Allen",
+        "Lindsey Phelps", "Samantha Gray", "Cody Rogers", "Matthew Andrews", "Cynthia Marsh",
+        "Paul Meza", "Felicia Hernandez", "Thomas Butler", "Anthony Estrada", "Pamela Schultz"
+    ],
+    "Amount": [
+        14.41, 15.58, 88.15, 43.7, 54.39, 40.27, 13.72, 55.54, 32.61, 54.89,
+        60.68, 54.48, 98.22, 88.75, 60.3
+    ],
+    "Date": [
+        "2025-05-18", "2025-05-18", "2025-05-15", "2025-05-22", "2025-05-17",
+        "2025-05-21", "2025-05-20", "2025-05-15", "2025-05-14", "2025-05-20",
+        "2025-05-20", "2025-05-13", "2025-05-22", "2025-05-13", "2025-05-22"
+    ],
+    "Status": [
+        "Completed", "Cancelled", "Completed", "Completed", "Cancelled",
+        "Completed", "Pending", "Cancelled", "Pending", "Cancelled",
+        "Cancelled", "Pending", "Completed", "Completed", "Pending"
+    ]
+}
+
+# Load into DataFrame
+df = pd.DataFrame(data)
+
+# Filter completed orders
+completed_orders = df[df["Status"] == "Completed"]
+
+# 1. Calculate total amount of all Completed orders
+total_completed_amount = completed_orders["Amount"].sum()
+print(f"Total Amount of Completed Orders: ₹{total_completed_amount:.2f}")
+
+# 2. Number of unique customers who made completed orders
+unique_customers = completed_orders["Customer Name"].nunique()
+print(f"Number of Unique Customers with Completed Orders: {unique_customers}")
+
